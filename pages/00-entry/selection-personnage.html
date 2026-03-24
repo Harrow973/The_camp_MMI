@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<base href="../../" />
+<title>The Camp — Briefing</title>
+
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles/pages/entry/selection-personnage.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"><div class="grain"></div></div>
+  <div class="transition" aria-hidden="true"></div>
+
+  <main class="app" role="application" aria-label="The Camp — Briefing">
+    <header class="topbar">
+      <div class="brand" aria-label="The Camp">
+        <img src="img/logotc.webp" alt="Logo The Camp">
+        <div class="brandTxt">
+          <h1>THE CAMP</h1>
+          <div class="sub">Briefing — Discipline</div>
+        </div>
+      </div>
+
+      <button class="back" id="backBtn" type="button" aria-label="Retour">
+        ← Retour
+      </button>
+    </header>
+
+    <section class="hero" aria-label="Briefing de mission">
+      <div class="heroInner">
+        <div class="heroTitle">
+          <h2>Briefing</h2>
+          <div class="tag">Opération active</div>
+        </div>
+
+        <!-- Texte: volontairement court (tu as dit “pas beaucoup de texte”) -->
+        <p class="heroP">
+          Bienvenue au Camp. <span class="muted">Ici, chaque étape compte.</span><br>
+          Scanne, résous, progresse. <span class="muted">Reste discipliné.</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="Règles essentielles">
+      <div class="cards">
+        <div class="card">
+          <div class="icon" aria-hidden="true">QR</div>
+          <h3>Scanner</h3>
+          <p>Débloque des zones via des QR codes et avance dans la mission.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon" aria-hidden="true">⚡</div>
+          <h3>Épreuves</h3>
+          <p>Mini-jeux et énigmes mettront ton sang-froid à l’épreuve.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon" aria-hidden="true">…</div>
+          <h3>Décisions</h3>
+          <p>Les dialogues orientent l’histoire. Observe les détails.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="startWrap" aria-label="Démarrer">
+      <button class="start" id="startBtn" type="button">
+        Commencer
+      </button>
+      <div class="fine">Conseil: joue au casque pour une meilleure immersion.</div>
+    </section>
+  </main>
+
+  <!-- LOADING OVERLAY -->
+  <div class="loading" id="loading" aria-hidden="true">
+    <div class="shards" id="shards" aria-hidden="true"></div>
+
+    <div class="loadCard" role="dialog" aria-label="Chargement">
+      <div class="loadInner">
+        <div class="loadTop">
+          <div class="loadBrand">
+            <img src="img/logotc.webp" alt="Logo The Camp">
+            <div class="loadTxt">
+              <div class="t">THE CAMP</div>
+              <div class="s" id="loadSub">Synchronisation…</div>
+            </div>
+          </div>
+          <div class="pct" id="pct">0%</div>
+        </div>
+
+        <div class="bar" aria-label="Barre de chargement">
+          <div class="barFill" id="barFill"></div>
+        </div>
+
+        <div class="loadLine">
+          <div class="status" id="status">Préparation du briefing</div>
+          <div class="sig"><span class="dot" aria-hidden="true"></span><span id="sigTxt">SIGNAL OK</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="scripts/core/app-core.js"></script>
+
+<script src="scripts/pages/00-entry/selection-personnage.js"></script>
+</body>
+</html>

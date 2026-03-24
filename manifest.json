@@ -1,0 +1,21 @@
+{
+  "name": "The Camp",
+  "short_name": "TheCamp",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#05060a",
+  "theme_color": "#05060a",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "img/icon-192.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "img/icon-512.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}

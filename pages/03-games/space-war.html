@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <base href="../../" />
+  <title>The Camp — Space War (Masterclass)</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/pages/games/space-war.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"><div class="grain"></div></div>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+  <div class="fadeBlack" aria-hidden="true"></div>
+
+  <main class="app" role="application" aria-label="The Camp — Space War">
+    <header class="topbar">
+      <div class="brand">
+        <div class="title">THE CAMP</div>
+        <div class="subtitle">Opération — Space War</div>
+      </div>
+      <div class="pill" aria-label="État mission">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="statusText">SYSTÈME: EN ATTENTE</span>
+      </div>
+    </header>
+
+    <section class="stage" id="stage" aria-label="Zone de jeu">
+      <div class="toast" id="toast">MISSION</div>
+      <canvas id="c"></canvas>
+
+      <!-- Touch controls (bottom) -->
+      <div class="touchbar" aria-label="Contrôles tactiles">
+        <div class="cluster">
+          <div class="btnCircle btnLeft" id="leftBtn"><div class="btnIcon">◀</div></div>
+          <div class="btnCircle btnRight" id="rightBtn"><div class="btnIcon">▶</div></div>
+        </div>
+
+        <div class="cluster">
+          <div class="btnCircle btnFire" id="fireBtn"><div class="btnIcon"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HUD compact -->
+    <section class="hud" aria-label="Tableau de bord">
+      <div class="stat"><div class="k">Vies</div><div class="v" id="livesVal">03</div></div>
+      <div class="stat"><div class="k">Score</div><div class="v" id="scoreVal">0</div></div>
+      <div class="mid">
+        <div class="k">Vague</div>
+        <div class="v" id="waveVal">1</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- TUTO overlay (auto au chargement) -->
+  <div class="overlay" id="tutorialOverlay" role="dialog" aria-label="Briefing mission">
+    <div class="card">
+      <div class="scanline" aria-hidden="true"></div>
+      <div class="cardInner">
+        <div class="cardTitle">Briefing — Space War</div>
+        <div class="cardSub" id="tutoText">
+          Objectif: neutraliser les drones et tenir la ligne. Récupère des <b>power-ups</b> pour dominer.
+          Quand tu es prêt, valide l’ordre.
+        </div>
+
+        <div class="chips">
+          <div class="chip"><span class="chipDot cyan"></span> Déplacement: ◀ / ▶</div>
+          <div class="chip"><span class="chipDot"></span> Tir: bouton FEU</div>
+          <div class="chip"><span class="chipDot green"></span> Shield: invincible</div>
+          <div class="chip"><span class="chipDot"></span> Rapid: cadence +</div>
+          <div class="chip"><span class="chipDot cyan"></span> Double: 2 tirs</div>
+          <div class="chip"><span class="chipDot red"></span> Heal: +1 vie</div>
+        </div>
+
+        <div class="ctaRow">
+          <button class="cta secondary" id="muteGhost" type="button">Son auto (tap)</button>
+          <button class="cta" id="okBtn" type="button">OK</button>
+        </div>
+
+        <div class="fine">
+          Astuce: reste mobile et prends les bonus dès qu’ils apparaissent.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Résumé fin -->
+  <div class="summary" id="summaryOverlay" aria-hidden="true">
+    <div class="card" role="dialog" aria-label="Résumé mission">
+      <div class="scanline" aria-hidden="true"></div>
+      <div class="cardInner">
+        <div class="cardTitle">Débrief — Combat terminé</div>
+
+        <div class="grid2">
+          <div class="panel">
+            <div class="k">Score final</div>
+            <div class="big" id="finalScore">0</div>
+          </div>
+          <div class="panel">
+            <div class="k">Précision</div>
+            <div class="big" id="finalAcc">0%</div>
+          </div>
+          <div class="panel">
+            <div class="k">Drones détruits</div>
+            <div class="big" id="finalKills">0</div>
+          </div>
+          <div class="panel">
+            <div class="k">Vague max</div>
+            <div class="big" id="finalWave">1</div>
+          </div>
+          <div class="panel grade">
+            <div>
+              <div class="k">Grade</div>
+              <div class="big" id="finalGrade">RECRUE</div>
+            </div>
+            <div class="medal" id="medalGlyph">★</div>
+          </div>
+          <div class="panel">
+            <div class="k">Temps</div>
+            <div class="big" id="finalTime">00:00</div>
+          </div>
+        </div>
+
+        <div class="rewardLine" id="rewardDesc">
+          Analyse: accès au <b>briefing</b> de victoire.
+        </div>
+
+        <div class="ctaRow">
+          <button class="cta secondary" id="retryBtn" type="button">Rejouer</button>
+          <button class="cta" id="nextBtn" type="button">Continuer</button>
+        </div>
+
+        <div class="fine">
+          Bonus: Shield sauve des runs. Rapid + Double = carnage.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/pages/03-games/space-war.js"></script>
+  <script src="scripts/core/app-core.js"></script>
+  
+</body>
+</html>

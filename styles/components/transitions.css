@@ -1,0 +1,46 @@
+.transition {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.transition__black {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  transition: opacity 520ms ease;
+}
+
+body.is-transitioning .transition__black {
+  opacity: 1;
+}
+
+.flash {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 62%);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.flash.is-on {
+  opacity: 1;
+}
+
+.fadeBlack {
+  position: fixed;
+  inset: 0;
+  z-index: 85;
+  pointer-events: none;
+  background: #000;
+  opacity: 0;
+  transition: opacity 520ms ease;
+}
+
+body.is-transitioning .fadeBlack {
+  opacity: 1;
+}

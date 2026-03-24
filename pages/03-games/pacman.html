@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <base href="../../" />
+  <title>Pac-Man</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/pages/games/pacman.css">
+</head>
+
+<body>
+  <div id="gameContainer">
+    <div id="topInfo">
+      <div id="score">Score: 0</div>
+      <div id="timer">30s</div>
+    </div>
+    <canvas id="gameCanvas" width="380" height="380"></canvas>
+
+    <div id="controls">
+      <button class="btn" id="up">▲</button>
+      <button class="btn" id="left">◄</button>
+      <button class="btn" id="right">►</button>
+      <button class="btn" id="down">▼</button>
+    </div>
+  </div>
+
+  <div id="startOverlay" class="overlay" style="display:block;">
+    <h2>PAC-MAN</h2>
+    <div class="hint">
+      PC : flèches (ou ZQSD)<br/>
+      Mobile : boutons<br/>
+      Objectif : survivre 30 secondes !
+    </div>
+    <button id="startBtn">Démarrer</button>
+  </div>
+
+  <div id="gameOver" class="overlay">
+    <h2>Game Over!</h2>
+    <p id="finalScore"></p>
+    <button id="restart">Rejouer</button>
+  </div>
+
+<script src="scripts/pages/03-games/pacman.js"></script>
+  <script src="scripts/core/app-core.js"></script>
+  
+</body>
+</html>

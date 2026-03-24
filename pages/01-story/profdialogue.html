@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <base href="../../" />
+  <title>The Camp — Coincés !</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/pages/story/profdialogue.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="bg__image" id="bgImage"></div>
+    <div class="bg__vignette"></div>
+    <div class="bg__grain"></div>
+  </div>
+
+  <div class="transition" aria-hidden="true">
+    <div class="transition__black"></div>
+  </div>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+
+  <main class="scene" role="application" aria-label="Briefing du professeur">
+    <header class="topbar">
+      <div class="brand" aria-label="The Camp">
+        <img src="img/logotc.webp" alt="Logo The Camp">
+        <div>
+          <div class="brand__title">THE CAMP</div>
+          <div class="brand__sub">Briefing — Mission</div>
+        </div>
+      </div>
+
+      <div style="width: 40px;"></div>
+    </header>
+
+    <section class="stage shakeTarget" id="stage" aria-label="Professeur Tony">
+      <div class="stage__scan" aria-hidden="true"></div>
+      <img class="prof" id="profImg" src="img/profcolere.webp" alt="Professeur Tony">
+    </section>
+
+    <section class="hud shakeTarget" id="hud" aria-label="Dialogue">
+      <div class="hud__frame" aria-hidden="true"></div>
+
+      <div class="hud__top">
+        <div class="speaker" id="speakerName">Professeur Tony</div>
+        <div class="badge" id="badge">Urgence</div>
+      </div>
+
+      <div class="hud__text" id="dialogueText"></div>
+
+      <div class="hud__bottom">
+        <button class="btn" id="continueBtn" type="button">Continuer</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Audio optionnel : même fichier que ton actuel -->
+  <audio id="bgm" loop>
+    <source src="audio/chill.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="scripts/core/app-core.js"></script>
+
+  <script src="scripts/pages/01-story/profdialogue.js"></script>
+
+  
+</body>
+</html>

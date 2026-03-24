@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <base href="../../" />
+  <title>The Camp — Levier Temporel</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/pages/story/levier.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="bg__image" id="bgImage"></div>
+    <div class="bg__vignette"></div>
+    <div class="bg__grain"></div>
+  </div>
+
+  <div class="transition" aria-hidden="true">
+    <div class="transition__black"></div>
+  </div>
+
+  <div class="portal" id="portal" aria-hidden="true">
+    <div class="portal__rings">
+      <div class="ringA"></div>
+      <div class="ringB"></div>
+      <div class="ringC"></div>
+    </div>
+    <div class="portal__flash"></div>
+  </div>
+
+  <main class="scene" role="application" aria-label="Activation du levier temporel">
+    <header class="topbar">
+      <button class="chip" id="backBtn" type="button">← Retour</button>
+
+      <div class="brand" aria-label="The Camp">
+        <img src="img/logotc.webp" alt="Logo The Camp">
+        <div>
+          <div class="brand__title">THE CAMP</div>
+          <div class="brand__sub">Activation — Levier temporel</div>
+        </div>
+      </div>
+
+      <div style="width: 88px;"></div>
+    </header>
+
+    <section class="panel" aria-label="Levier">
+      <div class="panel__frame" aria-hidden="true"></div>
+
+      <div class="leverStage">
+        <div>
+          <div class="title">LEVIER TEMPOREL</div>
+          <div class="subtitle">Déclenche la séquence de saut</div>
+        </div>
+
+        <div class="leverWrap" id="leverWrap" tabindex="0" aria-label="Activer le levier">
+          <div class="ring" aria-hidden="true"></div>
+          <div class="leverBase" aria-hidden="true"></div>
+          <div class="lever" aria-hidden="true"></div>
+        </div>
+
+        <div class="pulse" id="pulseHint">
+          <span class="pulse__dot" aria-hidden="true"></span>
+          <span>Appuie pour activer</span>
+        </div>
+
+        <div class="ctaRow">
+          <div class="hint">Tap / Clic sur le levier • Entrée/Espace</div>
+          <button class="btn" id="activateBtn" type="button">Activer</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>© 2025 — The Camp</span>
+    </footer>
+  </main>
+
+  <script src="scripts/core/app-core.js"></script>
+
+  <script src="scripts/pages/01-story/levier.js"></script>
+</body>
+</html>

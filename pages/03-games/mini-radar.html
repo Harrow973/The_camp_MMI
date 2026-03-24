@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <base href="../../" />
+  <title>The Camp — Radar Lock</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/pages/games/mini-radar.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"><div class="grain"></div></div>
+
+  <main class="app" role="application" aria-label="The Camp — Radar Lock">
+    <header class="topbar">
+      <div class="brand">
+        <div class="title">THE CAMP</div>
+        <div class="subtitle">Opération — Radar Lock</div>
+      </div>
+      <div class="pill" aria-label="État mission">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="statusText">ARMEMENT: EN ATTENTE</span>
+      </div>
+    </header>
+
+    <section class="stage" id="stage" aria-label="Radar">
+      <div class="toast" id="toast">VERROUILLAGE CONFIRMÉ</div>
+      <canvas id="c" aria-label="Zone de jeu"></canvas>
+    </section>
+
+    <section class="hud" aria-label="Tableau de bord">
+      <div class="hudRow">
+        <div class="stat"><div class="k">Temps</div><div class="v" id="timeVal">00:30</div></div>
+        <div class="stat"><div class="k">Score</div><div class="v" id="scoreVal">0</div></div>
+        <div class="stat"><div class="k">Combo</div><div class="v" id="comboVal">x1</div></div>
+      </div>
+
+      <div class="btnRow">
+        <button class="btn" id="startBtn" type="button">Démarrer</button>
+        <button class="btn secondary" id="muteBtn" type="button">Son: ON</button>
+      </div>
+
+      <div class="hint" id="hint">
+        Mission: touche les <b>signaux</b> quand le radar les révèle. Enchaîne sans rater pour monter le <b>combo</b>.
+      </div>
+    </section>
+  </main>
+
+  <!-- Fin de partie: Grade + Récompense -->
+  <div class="overlay" id="debriefOverlay" aria-hidden="true">
+    <div class="card" role="dialog" aria-label="Débrief mission">
+      <div class="cardInner">
+        <div class="cardTitle">Débrief — Défense réussie</div>
+
+        <div class="grid2">
+          <div class="panel">
+            <div class="k">Score final</div>
+            <div class="big" id="finalScore">0</div>
+          </div>
+          <div class="panel">
+            <div class="k">Meilleur combo</div>
+            <div class="big" id="finalCombo">x1</div>
+          </div>
+          <div class="panel grade">
+            <div>
+              <div class="k">Grade</div>
+              <div class="big" id="finalGrade">RECRUE</div>
+            </div>
+            <div class="medal" id="medalGlyph">★</div>
+          </div>
+          <div class="panel">
+            <div class="k">Récompense</div>
+            <div class="big" id="finalReward">—</div>
+          </div>
+        </div>
+
+        <div class="rewardLine" id="rewardDesc">
+          Analyse: vous gagnez <b>+0 crédits</b> et un accès au <b>prochain secteur</b>.
+        </div>
+
+        <div class="cardBtns">
+          <button class="btn secondary" id="retryBtn" type="button">Rejouer</button>
+          <button class="btn" id="resultBtn" type="button">Voir le débrief</button>
+        </div>
+
+        <div class="fine">
+          Astuce: un combo élevé accélère la progression de niveau et maximise vos points.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/pages/03-games/mini-radar.js"></script>
+  <script src="scripts/core/app-core.js"></script>
+  
+</body>
+</html>

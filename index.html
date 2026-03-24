@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>The Camp — Menu Principal</title>
+
+  <link rel="icon" type="image/webp" href="img/logotc.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="is-loading home-page">
+  <!-- Backdrop layers (cinématique) -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg__image" id="bgImage"></div>
+    <div class="bg__vignette"></div>
+    <div class="bg__grain"></div>
+    <div class="bg__glow"></div>
+    <div class="bg__scanlines"></div>
+    <div class="bg__noisePulse"></div>
+  </div>
+
+  <!-- Transition overlay (fade-to-black / cutscene) -->
+  <div class="transition" aria-hidden="true">
+    <div class="transition__black"></div>
+  </div>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+
+  <!-- Intro overlay -->
+  <div class="intro" id="intro" aria-hidden="false">
+    <div class="intro__card">
+      <div class="intro__top">
+        <div class="intro__badge">THE CAMP / BOOT</div>
+        <div class="intro__sig" id="introSig">SIGNAL: —</div>
+      </div>
+
+      <div class="intro__logoWrap" aria-hidden="true">
+        <img src="img/logotc.webp" alt="" class="intro__logo" />
+        <div class="intro__ring"></div>
+        <div class="intro__ring intro__ring--2"></div>
+      </div>
+
+      <div class="intro__title glitch" data-text="INITIALISATION">INITIALISATION</div>
+      <div class="intro__sub" id="introLine">
+        Chargement du système tactique…
+      </div>
+
+      <div class="intro__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="intro__fill" id="introFill"></div>
+        <div class="intro__ticks" aria-hidden="true"></div>
+      </div>
+
+      <div class="intro__hint" id="introHint">
+        Astuce: touche l’écran pour activer le son.
+      </div>
+
+      <div class="intro__cta">
+        <button class="intro__btn" id="skipBtn" type="button">
+          Passer l’intro
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HUD / Menu -->
+  <main class="menu menu--center" role="application" aria-label="Menu principal The Camp">
+    <header class="menu__header menu__header--center">
+      <div class="menu__logoStack" aria-label="The Camp">
+        <img class="menu__logo menu__logo--hero" src="img/logotc.webp" alt="Logo The Camp" />
+        <div class="menu__logoGlow" aria-hidden="true"></div>
+      </div>
+
+      <div class="menu__titleWrap menu__titleWrap--center">
+        <h1 class="menu__title menu__title--hero glitch" data-text="THE CAMP">THE CAMP</h1>
+        <p class="menu__subtitle menu__subtitle--hero">Survie • Stratégie • Coopération</p>
+      </div>
+
+      <div class="menu__microline" id="microline" aria-hidden="true">
+        <span class="dotLive"></span>
+        <span>Opération active — prêt à déployer</span>
+      </div>
+    </header>
+
+    <section class="panel panel--center">
+      <div class="panel__frame" aria-hidden="true"></div>
+      <div class="panel__fx" aria-hidden="true"></div>
+
+      <nav class="actions actions--center" aria-label="Actions principales">
+        <button class="btn btn--primary btn--breathe" data-action="play" autofocus>
+          <span class="btn__label">Jouer</span>
+          <span class="btn__ripple" aria-hidden="true"></span>
+        </button>
+
+        <button class="btn btn--secondary btn--glitchy" data-action="credits">
+          <span class="btn__label">Crédits</span>
+  
+          <span class="btn__ripple" aria-hidden="true"></span>
+        </button>
+      </nav>
+
+      <footer class="panel__footer">
+        <div class="status">
+          <span class="status__dot" aria-hidden="true"></span>
+          <span class="status__text" id="statusText">Système prêt</span>
+        </div>
+        <div class="version">v0.1</div>
+      </footer>
+    </section>
+
+    <aside class="side side--center" aria-label="Infos">
+      <div class="side__card">
+        <div class="side__title">Conseil</div>
+        <div class="side__body" id="tipBox">Reste mobile, reste vivant.</div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="scripts/core/app-core.js"></script>
+
+  <script src="scripts/pages/index.js"></script>
+
+  
+</body>
+</html>

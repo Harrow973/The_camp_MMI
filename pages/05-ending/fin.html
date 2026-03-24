@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <base href="../../" />
+  <title>The Camp — Fin</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/pages/ending/fin.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="bg__img" id="bgImg"></div>
+    <div class="bg__vignette"></div>
+    <div class="bg__scanlines"></div>
+    <div class="bg__grain"></div>
+  </div>
+
+  <div class="flash" id="flash" aria-hidden="true"></div>
+  <div class="fadeBlack" aria-hidden="true"></div>
+
+  <main class="scene" role="application" aria-label="The Camp — Fin">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand__title">THE CAMP</div>
+        <div class="brand__sub">Épilogue — Transmission finale</div>
+      </div>
+      <div class="pill" aria-label="Statut">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="status">MISSION: TERMINÉE</span>
+      </div>
+    </header>
+
+    <section class="stage" id="stage" aria-label="Professeur">
+      <canvas id="fx"></canvas>
+
+      <div class="badgeStamp" id="stamp" aria-hidden="true">Archive scellée</div>
+
+      <div class="profWrap" id="profWrap">
+        <div class="aura" aria-hidden="true"></div>
+        <img class="prof glitch" id="profImg" src="img/profneutre.webp" alt="Professeur">
+      </div>
+    </section>
+
+    <section class="hud" id="hud" aria-label="Dialogue final">
+      <div class="hud__frame" aria-hidden="true"></div>
+
+      <div class="hudTop">
+        <div class="name">Professeur</div>
+        <div class="tag" id="tag">Saint-Claude — Restauré</div>
+      </div>
+
+      <div class="text" id="text"></div>
+
+      <div class="hudBottom">
+        <div class="hintTap" id="hintTap"></div>
+        <button class="btn" id="btn" type="button">Fin</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="scripts/pages/05-ending/fin.js"></script>
+  <script src="scripts/core/app-core.js"></script>
+  
+</body>
+</html>

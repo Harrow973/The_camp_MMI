@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <base href="../../" />
+  <title>The Camp — Scanner</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/pages/puzzles/scanner2.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="bg__vignette"></div>
+    <div class="bg__grain"></div>
+  </div>
+
+  <div class="transition" aria-hidden="true">
+    <div class="transition__black"></div>
+  </div>
+
+  <main class="scene" role="application" aria-label="Scanner QR Code — Énigme 2">
+    <header class="topbar">
+      <button class="chip" id="backBtn" type="button">← Retour</button>
+
+      <div class="brand" aria-label="The Camp">
+        <img src="img/logotc.webp" alt="Logo The Camp">
+        <div>
+          <div class="brand__title">THE CAMP</div>
+          <div class="brand__sub">Scanner — Énigme 2</div>
+        </div>
+      </div>
+
+      <div style="width:88px;"></div>
+    </header>
+
+    <section class="panel" aria-label="Zone de scan">
+      <div class="panel__frame" aria-hidden="true"></div>
+
+      <div class="meta">
+        <div class="meta__title">Scanner</div>
+        <div class="meta__status" id="statusChip">Initialisation</div>
+      </div>
+
+      <div class="frame" id="frame">
+        <div id="qr-reader"></div>
+        <div class="overlay" aria-hidden="true">
+          <div class="corners"></div>
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+          <div class="scanline" id="scanline"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn primary full" id="startBtn" type="button">Démarrer le scan</button>
+
+        <select class="select full" id="cameraSelect" aria-label="Choix caméra" disabled>
+          <option value="">Caméra : auto</option>
+        </select>
+
+        <button class="btn danger" id="stopBtn" type="button" disabled>Stop</button>
+        <button class="btn" id="retryBtn" type="button" disabled>Réessayer</button>
+      </div>
+
+      <div class="small" id="helpText">
+        Conseils iPhone : ouvre la page dans Safari (pas Instagram/TikTok), et assure-toi d’être en HTTPS.
+      </div>
+    </section>
+
+    <section class="resultHUD" aria-label="Résultat">
+      <div class="resultHUD__title">Statut</div>
+      <div class="resultHUD__text" id="resultText">En attente…</div>
+    </section>
+  </main>
+
+  <!-- html5-qrcode -->
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <script src="scripts/core/app-core.js"></script>
+
+  <script src="scripts/pages/02-puzzles/scanner2.js"></script>
+</body>
+</html>

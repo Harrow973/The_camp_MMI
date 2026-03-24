@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <base href="../../" />
+  <title>The Camp — Mini-Plateforme (Artefact)</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/pages/puzzles/qr-code2.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"><div class="grain"></div></div>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+
+  <main class="app" role="application" aria-label="The Camp — Mini-Plateforme">
+    <header class="topbar">
+      <div class="brand">
+        <div class="title">THE CAMP</div>
+        <div class="subtitle">Opération — Saut tactique</div>
+      </div>
+      <div class="pill" aria-label="État mission">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="statusText">SYSTÈME: EN ATTENTE</span>
+      </div>
+    </header>
+
+    <section class="stage" id="stage" aria-label="Zone de jeu">
+      <div class="toast" id="toast">MISSION</div>
+      <canvas id="c"></canvas>
+
+      <div class="touchbar" aria-label="Contrôles tactiles">
+        <div class="cluster">
+          <div class="btnCircle btnLeft" id="leftBtn"><div class="btnIcon">◀</div></div>
+          <div class="btnCircle btnRight" id="rightBtn"><div class="btnIcon">▶</div></div>
+        </div>
+        <div class="cluster">
+          <div class="btnCircle btnJump" id="jumpBtn"><div class="btnIcon">⤒</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hud" aria-label="Tableau de bord">
+      <div class="stat"><div class="k">Objectif</div><div class="v" id="objVal">ATTEINDRE L’ARTEFACT</div></div>
+      <div class="stat" style="text-align:right;">
+        <div class="k">Temps</div><div class="v" id="timeVal">00:00</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="overlay" id="tutorialOverlay" role="dialog" aria-label="Briefing mission">
+    <div class="card">
+      <div class="scanline" aria-hidden="true"></div>
+      <div class="cardInner">
+        <div class="cardTitle">Briefing — Saut tactique</div>
+        <div class="cardSub">
+          Objectif: franchis les plateformes, évite les zones rouges, et récupère l’<b>ARTEFACT</b>.
+          Méchants style Mario: écrase-les en tombant dessus.
+        </div>
+
+        <div class="chips">
+          <div class="chip"><span class="chipDot cyan"></span> Déplacement: ◀ / ▶</div>
+          <div class="chip"><span class="chipDot"></span> Saut: ⤒</div>
+          <div class="chip"><span class="chipDot red"></span> Danger: zones rouges</div>
+          <div class="chip"><span class="chipDot green"></span> Artefact: objectif</div>
+        </div>
+
+        <div class="ctaRow">
+          <button class="cta secondary" id="muteGhost" type="button">Son auto (tap)</button>
+          <button class="cta" id="okBtn" type="button">OK</button>
+        </div>
+
+        <div class="cardSub" style="font-size:0.84rem;color:rgba(240,245,240,0.62)">
+          Astuce: saute au dernier moment. Caméra “console” + zone de confort bas (évite la barre de nav).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="victory" id="victoryOverlay" aria-hidden="true">
+    <div class="glowRing" aria-hidden="true"></div>
+    <div class="card">
+      <div class="scanline" aria-hidden="true"></div>
+      <div class="cardInner">
+        <div class="stamp"><span class="chipDot"></span> ARTEFACT VERROUILLÉ</div>
+        <div class="winTitle">MISSION RÉUSSIE</div>
+        <div class="winSub">Synchronisation en cours… redirection vers l’artefact.</div>
+        <div class="progress"><div class="bar" id="bar"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/pages/02-puzzles/qr-code2.js"></script>
+  <script src="scripts/core/app-core.js"></script>
+  
+</body>
+</html>

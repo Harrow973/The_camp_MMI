@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <base href="../../" />
+  <title>The Camp — Récupération d’artéfact</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css" />
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles/pages/story/dialogue-professeur-artifact3.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"><div class="grain"></div></div>
+
+  <div class="fx" aria-hidden="true">
+    <canvas id="pfx"></canvas>
+    <div class="vignette"></div>
+    <div class="glitch" id="glitch"></div>
+    <div class="flash" id="flash"></div>
+  </div>
+
+  <div class="fade" aria-hidden="true"></div>
+
+  <main class="app" role="application" aria-label="The Camp — Récupération d’artéfact">
+    <header class="topbar">
+      <div class="brand">
+        <div class="title">THE CAMP</div>
+        <div class="subtitle">Artefact — Récupération</div>
+      </div>
+      <div class="pill" aria-label="État">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="status">OBJET: EN ATTENTE</span>
+      </div>
+    </header>
+
+    <section class="stage" id="stage" aria-label="Zone de récupération">
+      <div class="core">
+        <div class="ring" aria-hidden="true"></div>
+        <div class="halo" aria-hidden="true"></div>
+
+        <img id="artifact" class="artifact" src="img/artifact3_icon.webp" alt="Artéfact" draggable="false" />
+      </div>
+    </section>
+
+    <section class="hud" aria-label="Dialogue">
+      <div class="hudTop">
+        <div class="speaker">Professeur</div>
+        <div class="badge">Procédure</div>
+      </div>
+
+      <div class="text" id="line">
+        Touchez l’artéfact pour le récupérer. Restez discret.
+      </div>
+
+      <div class="row">
+        <button class="btn secondary" id="mute" type="button">Son: ON</button>
+        <button class="btn" id="btn" type="button">Récupérer</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="scripts/pages/01-story/dialogue-professeur-artifact3.js"></script>
+  <script src="scripts/core/app-core.js"></script>
+  
+</body>
+</html>

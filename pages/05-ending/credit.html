@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <base href="../../" />
+  <title>Crédits — The Camp</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/pages/ending/credit.css">
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="topBar">
+      <div class="badge" aria-label="Bannière du jeu">
+        <div class="logoMark" aria-hidden="true"></div>
+        <div class="badgeText">
+          <div class="small">IUT de la Guadeloupe • MMI</div>
+          <div class="big">BUT MMI 2 — Projet Jeu Web Mobile</div>
+        </div>
+      </div>
+
+      <div class="controls" aria-label="Contrôles">
+        <button class="iconBtn" id="toggleSound" data-on="false" aria-label="Activer/Désactiver le son">🔊</button>
+        <button class="iconBtn" id="toggleSpeed" data-mode="normal" aria-label="Vitesse des crédits">⏩</button>
+      </div>
+    </div>
+
+    <div class="panel" role="region" aria-label="Crédits défilants">
+      <div class="creditsViewport">
+        <div class="track" id="track">
+          <div class="titleBlock">
+            <h1 class="gameTitle glitch" id="gameTitle" data-text="THE CAMP">THE CAMP</h1>
+            <div class="pill"><span class="dot"></span> Crédits officiels</div>
+            <p class="subtitle">
+              Jeu réalisé par les <strong>BUT MMI de deuxième année</strong>.
+              Expérience optimisée pour téléphone.
+            </p>
+          </div>
+
+          <div class="section">
+            <h3>Développement <span class="tag">Code</span></h3>
+            <div class="names">
+              <div class="name"><strong>CHARLES Liam</strong><span>Dev</span></div>
+              <div class="name"><strong>ONESTAS Saïna</strong><span>Dev</span></div>
+              <div class="name"><strong>LACOMA Anssens</strong><span>Dev</span></div>
+              <div class="name"><strong>LEMAR Tony</strong><span>Dev</span></div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>Communication <span class="tag">Diffusion</span></h3>
+            <div class="names">
+              <div class="name"><strong>CLAIRE Vanessa</strong><span>Com</span></div>
+              <div class="name"><strong>DÉROCHE-BÉGATIN Sylvain</strong><span>Com</span></div>
+              <div class="name"><strong>CHARABIE Vaïna</strong><span>Com</span></div>
+              <div class="name"><strong>GUSTAVE Joshua</strong><span>Com</span></div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>Scénario <span class="tag">Narration</span></h3>
+            <div class="names">
+              <div class="name"><strong>MOUTOUSSAMY Alexis</strong><span>Story</span></div>
+              <div class="name"><strong>ROUSSAS Samuel</strong><span>Story</span></div>
+              <div class="name"><strong>LANDAIS Célia</strong><span>Story</span></div>
+              <div class="name"><strong>ROYER Anthony</strong><span>Story</span></div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>Design <span class="tag">UI • visuels</span></h3>
+            <div class="names">
+              <div class="name"><strong>BRACO Alissa</strong><span>Design</span></div>
+              <div class="name"><strong>MIAN Olivia</strong><span>Design</span></div>
+              <div class="name"><strong>MARTIN Sabrina</strong><span>Design</span></div>
+              <div class="name"><strong>LORANGE Sahilie</strong><span>Design</span></div>
+            </div>
+          </div>
+
+          <div class="thanks">
+            <h4>Remerciements</h4>
+            <p>
+              Merci à <strong>l’IUT de la Guadeloupe</strong>, à <strong>nos professeurs</strong> pour l’accompagnement,
+              et à <strong>tous les testeurs du jeu</strong> pour leurs retours précieux.
+            </p>
+          </div>
+
+          <div class="final" id="finalCard">
+            <p class="big">Merci d’avoir joué.</p>
+            <p class="small">À bientôt pour une nouvelle aventure temporelle…</p>
+          </div>
+
+          <div class="endSpacer" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottomDock" aria-label="Barre d’actions">
+      <div class="status">
+        <div class="k">État des crédits</div>
+        <div class="v" id="statusText">Défilement en cours</div>
+      </div>
+      <button class="primaryBtn" id="backHome">Retour à l’accueil</button>
+    </div>
+  </div>
+
+  <script src="scripts/pages/05-ending/credit.js"></script>
+  <script src="scripts/core/app-core.js"></script>
+  
+</body>
+</html>

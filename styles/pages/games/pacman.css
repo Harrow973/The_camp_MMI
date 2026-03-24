@@ -1,0 +1,22 @@
+@import url("../../components/backdrop.css");
+@import url("../../components/transitions.css");
+
+@import url("../../components/reset.css");
+
+    *{-webkit-tap-highlight-color:transparent}
+    body{background:#000;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:100vh;font-family:Arial,sans-serif;overflow:hidden}
+    #gameContainer{display:flex;flex-direction:column;align-items:center;gap:15px;width:100%;max-width:420px;padding:10px}
+    #topInfo{display:flex;justify-content:space-between;width:100%;max-width:380px}
+    #score,#timer{color:#fff;font-size:24px;font-weight:bold}
+    #timer{color:#ffeb3b}
+    canvas{background:#000;border:3px solid #2121ff;display:block;max-width:100%;height:auto}
+    #controls{display:grid;grid-template-columns:repeat(3,70px);grid-template-rows:repeat(3,70px);gap:5px;margin-top:10px}
+    .btn{background:#2121ff;border:2px solid #4141ff;border-radius:10px;color:#fff;font-size:24px;font-weight:bold;cursor:pointer;touch-action:manipulation;user-select:none;display:flex;align-items:center;justify-content:center}
+    .btn:active{background:#1111cc;transform:scale(0.95)}
+    #up{grid-column:2;grid-row:1} #left{grid-column:1;grid-row:2} #right{grid-column:3;grid-row:2} #down{grid-column:2;grid-row:3}
+    .overlay{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.95);color:#fff;padding:30px;border-radius:15px;text-align:center;border:3px solid #2121ff;z-index:10;min-width:280px;display:none}
+    .overlay h2{font-size:32px;margin-bottom:15px;color:#ffff00}
+    .overlay button{background:#2121ff;color:#fff;border:none;padding:15px 30px;font-size:18px;border-radius:8px;cursor:pointer;margin-top:15px}
+    .overlay button:active{background:#1111cc}
+    .hint{opacity:.85;font-size:14px;margin-top:10px;line-height:1.3}
+  

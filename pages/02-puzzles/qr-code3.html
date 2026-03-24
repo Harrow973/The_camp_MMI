@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <base href="../../" />
+  <title>The Camp — Wire Cut</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/pages/puzzles/qr-code3.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"><div class="grain"></div></div>
+  <div class="crt" aria-hidden="true"></div>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+  <div class="fade" aria-hidden="true"></div>
+
+  <main class="app" role="application" aria-label="The Camp — Wire Cut">
+    <header class="topbar">
+      <div class="brand">
+        <div class="title">THE CAMP</div>
+        <div class="subtitle">Opération — Désamorçage (Wire Cut)</div>
+      </div>
+      <div class="pill" aria-label="État mission">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="statusText">ARME: EN ATTENTE</span>
+      </div>
+    </header>
+
+    <section class="stage" id="stage" aria-label="Table de désamorçage">
+      <div class="toast" id="toast">SÉQUENCE CAPTÉE</div>
+
+      <div class="countdown" id="countdown" aria-hidden="true">
+        <div class="countCard">
+          <div class="countTitle">PRÉPARE-TOI</div>
+          <div class="countBig" id="countBig">3</div>
+          <div class="countSub" id="countSub">Stabilisation du circuit…</div>
+        </div>
+      </div>
+
+      <div class="stamp" id="stamp" aria-hidden="true">HAUTE TENSION</div>
+
+      <div class="board">
+        <div class="hintPanel" aria-label="Indice de séquence">
+          <div class="hintLeft">
+            <div class="k" id="modeKey">Indice</div>
+            <div class="v" id="modeVal">Observe la séquence</div>
+          </div>
+          <div class="seq" aria-label="Séquence">
+            <div class="chip" id="chip0">A</div>
+            <div class="chip" id="chip1">B</div>
+            <div class="chip" id="chip2">C</div>
+          </div>
+        </div>
+
+        <div class="wiresArea" aria-label="Fils à couper">
+          <canvas id="c"></canvas>
+
+          <div class="wireBtns" aria-hidden="false">
+            <button class="wireBtn" id="wireA" type="button" aria-label="Fil A"></button>
+            <button class="wireBtn" id="wireB" type="button" aria-label="Fil B"></button>
+            <button class="wireBtn" id="wireC" type="button" aria-label="Fil C"></button>
+
+            <div class="wireLabel" style="grid-column:1; color: rgba(240,173,78,0.95)">A</div>
+            <div class="wireLabel" style="grid-column:2; color: rgba(53,201,195,0.95)">B</div>
+            <div class="wireLabel" style="grid-column:3; color: rgba(228,87,87,0.95)">C</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hud" aria-label="Tableau de bord">
+      <div class="hudRow">
+        <div class="stat"><div class="k">Temps</div><div class="sv" id="timeVal">00:25</div></div>
+        <div class="stat"><div class="k">Round</div><div class="sv" id="roundVal">1/3</div></div>
+        <div class="stat"><div class="k">Erreurs</div><div class="sv" id="mistakeVal">0</div></div>
+      </div>
+
+      <div class="btnRow">
+        <button class="btn" id="startBtn" type="button">Démarrer</button>
+        <button class="btn secondary" id="muteBtn" type="button">Son: ON</button>
+      </div>
+
+      <div class="hint" id="hint">
+        Mission: mémorise puis reproduis l’ordre des fils. Chaque erreur fait monter la <b>tension</b>.
+      </div>
+    </section>
+  </main>
+
+  <!-- Fin de partie -->
+  <div class="overlay" id="debriefOverlay" aria-hidden="true">
+    <div class="card" role="dialog" aria-label="Débrief mission">
+      <div class="cardInner">
+        <div class="cardTitle">Débrief — Désamorçage</div>
+
+        <div class="grid2">
+          <div class="panel">
+            <div class="k">Temps restant</div>
+            <div class="big" id="finalTime">—</div>
+          </div>
+          <div class="panel">
+            <div class="k">Erreurs</div>
+            <div class="big" id="finalMistakes">0</div>
+          </div>
+          <div class="panel grade">
+            <div>
+              <div class="k">Grade</div>
+              <div class="big" id="finalGrade">RECRUE</div>
+            </div>
+            <div class="medal" id="medalGlyph">★</div>
+          </div>
+          <div class="panel">
+            <div class="k">Récompense</div>
+            <div class="big" id="finalReward">—</div>
+          </div>
+        </div>
+
+        <div class="rewardLine" id="rewardDesc">
+          Analyse: vous gagnez <b>+0 crédits</b> et un accès au <b>prochain secteur</b>.
+        </div>
+
+        <div class="cardBtns">
+          <button class="btn secondary" id="retryBtn" type="button">Rejouer</button>
+          <button class="btn" id="resultBtn" type="button">Continuer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/pages/02-puzzles/qr-code3.js"></script>
+  <script src="scripts/core/app-core.js"></script>
+  
+</body>
+</html>

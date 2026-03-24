@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <!-- IMPORTANT: anti-zoom iOS/Android -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no" />
+  <base href="../../" />
+  <title>The Camp — Labyrinthe</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/pages/games/maze.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"><div class="grain"></div></div>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+  <div class="fadeBlack" aria-hidden="true"></div>
+
+  <main class="app" role="application" aria-label="The Camp — Labyrinthe">
+    <header class="topbar">
+      <div class="brand">
+        <div class="title">THE CAMP</div>
+        <div class="subtitle">Opération — Labyrinthe</div>
+      </div>
+      <div class="pill" aria-label="État mission">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="statusText">SYSTÈME: ACTIF</span>
+      </div>
+    </header>
+
+    <section class="hud" aria-label="Tableau de bord">
+      <div class="stat">
+        <div class="k">Clés</div>
+        <div class="v"><span id="keysVal">00</span>/03</div>
+      </div>
+      <div class="stat">
+        <div class="k">Temps</div>
+        <div class="v"><span id="timeVal">00</span>s</div>
+      </div>
+      <div class="stat">
+        <div class="k">Sortie</div>
+        <div class="v" id="exitState">VERROUILLÉE</div>
+      </div>
+    </section>
+
+    <section class="stage" id="stage" aria-label="Zone de jeu">
+      <div class="toast" id="toast">MISSION</div>
+      <div class="scanline" aria-hidden="true"></div>
+      <canvas id="gameCanvas"></canvas>
+    </section>
+
+    <section class="controls-zone" aria-label="Contrôles tactiles">
+      <div class="d-pad">
+        <div class="btn" id="up"><span>↑</span></div>
+        <div class="btn" id="left"><span>←</span></div>
+        <div class="btn" id="down"><span>↓</span></div>
+        <div class="btn" id="right"><span>→</span></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fin -->
+  <div class="end" id="endOverlay" aria-hidden="true">
+    <div class="card" role="dialog" aria-label="Débrief mission">
+      <div class="cardInner">
+        <div class="cardTitle">Débrief — Extraction</div>
+        <div class="cardSub">Portail sécurisé. Transfert vers le prochain secteur.</div>
+
+        <div class="grid2">
+          <div class="panel">
+            <div class="k">Temps total</div>
+            <div class="big"><span id="endTime">00</span>s</div>
+          </div>
+          <div class="panel">
+            <div class="k">Clés récupérées</div>
+            <div class="big"><span id="endKeys">03</span>/03</div>
+          </div>
+        </div>
+
+        <div class="ctaRow">
+          <button class="cta secondary" id="retryBtn" type="button">Rejouer</button>
+          <button class="cta" id="nextBtn" type="button">Continuer</button>
+        </div>
+
+        <div class="cardSub" style="opacity:.72">
+          Astuce: la sortie est verrouillée tant que les 3 clés ne sont pas sécurisées.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/pages/03-games/maze.js"></script>
+  <script src="scripts/core/app-core.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <base href="../../" />
+  <title>The Camp — Énigme 2</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/pages/puzzles/enigme2.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="bg__image" id="bgImage"></div>
+    <div class="bg__vignette"></div>
+    <div class="bg__grain"></div>
+  </div>
+
+  <div class="transition" aria-hidden="true">
+    <div class="transition__black"></div>
+  </div>
+  <div class="warp" id="warp" aria-hidden="true">
+    <div class="warp__ring"></div>
+  </div>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+
+  <main class="scene" role="application" aria-label="Énigme 2 — Emplacement">
+    <header class="topbar">
+      <button class="chip" id="backBtn" type="button">← Retour</button>
+
+      <div class="brand" aria-label="The Camp">
+        <img src="img/logotc.webp" alt="Logo The Camp">
+        <div>
+          <div class="brand__title">THE CAMP</div>
+          <div class="brand__sub">Énigme 2 — Emplacement</div>
+        </div>
+      </div>
+
+      <div style="width:88px;"></div>
+    </header>
+
+    <section class="card" aria-label="Objectif">
+      <div class="card__frame" aria-hidden="true"></div>
+
+      <div class="objective">
+        <div class="objective__title">Objectif</div>
+        <div class="objective__tag">Scan requis</div>
+      </div>
+
+      <div class="target" id="target">
+        <img id="emplacementImage" src="img/emplacement2.webp" alt="Emplacement du QR Code">
+        <div class="target__pulse" aria-hidden="true"></div>
+      </div>
+
+      <div class="hud">
+        <div class="hint">
+          Trouve ce lieu, puis lance le scan pour valider l’artefact.
+        </div>
+
+        <button class="btn" id="scanBtn" type="button">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 3h8v8H3zm2 2v4h4V5zm8-2h8v8h-8zm2 2v4h4V5zM3 13h8v8H3zm2 2v4h4v-4zm13-2h3v2h-3v2h3v2h-2v2h-2v-3h2v-2h-3zm-5 0h-3v2h2v2h-2v2h3v2h2v-3h-2v-2h2z"/>
+          </svg>
+          Scanner
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="scripts/core/app-core.js"></script>
+
+  <script src="scripts/pages/02-puzzles/enigme2.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+@import url("../../components/backdrop.css");
+@import url("../../components/transitions.css");
+
+@import url("../../components/reset.css");
+
+        body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #2c3e50; color: white; font-family: 'Black Ops One', cursive; text-align: center; }
+        h1 { font-size: 4em; /* Augmenté de 3em à 4em */ }
+        p { font-size: 1.8em; /* Ajout d'une taille de police pour le paragraphe */ }
+        a { color: #f1c40f; text-decoration: none; font-size: 2.5em; /* Augmenté de 1.2em à 1.5em */ margin-top: 20px; display: inline-block; padding: 10px 20px; background-color: #e74c3c; border-radius: 5px;}
+    

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <base href="../../" />
+  <title>The Camp — Professeur (1900)</title>
+  <link rel="icon" type="image/webp" href="img/artifact1_icon.webp">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="styles/tokens.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=IM+Fell+English:ital@0;1&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/pages/story/dialogue-professeur-artifact2.css">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="bg__image" id="bgImage"></div>
+    <div class="bg__vignette"></div>
+    <div class="bg__paper"></div>
+  </div>
+
+  <div class="transition" aria-hidden="true"><div class="transition__black"></div></div>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+
+  <main class="scene" role="application" aria-label="Dialogue du professeur (1900)">
+    <header class="topbar">
+      <div class="brand" aria-label="The Camp">
+        <div class="brand__mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2z" fill="rgba(255,245,230,0.92)"/>
+            <path d="M12 6v6l4 2" stroke="rgba(91,29,29,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand__title">THE CAMP</div>
+          <div class="brand__sub">Cabinet — Chronologie 1900</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="stage" id="stage" aria-label="Professeur">
+      <div class="lampSweep" aria-hidden="true"></div>
+      <img class="prof" id="profImg" src="img/profsourir.webp" alt="Professeur">
+    </section>
+
+    <section class="hud" id="hud" aria-label="Dialogue">
+      <div class="hud__frame" aria-hidden="true"></div>
+      <div class="hud__top">
+        <div class="speaker" id="speakerName">Professeur</div>
+        <div class="badge" id="badge">1900</div>
+      </div>
+
+      <div class="hud__text" id="dialogueText"></div>
+
+      <div class="hud__bottom">
+        <button class="btn" id="continueBtn" type="button">Continuer</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="spinner" aria-hidden="true"></div>
+  </div>
+
+  <!-- SFX optionnels (1900 : papier / plume) -->
+  <audio id="sfxPaper" preload="auto">
+    <source src="audio/chill.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="sfxInk" preload="auto">
+    <source src="audio/chill.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="scripts/pages/01-story/dialogue-professeur-artifact2.js"></script>
+  <script src="scripts/core/app-core.js"></script>
+  
+</body>
+</html>
