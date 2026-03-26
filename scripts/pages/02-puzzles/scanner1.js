@@ -1,6 +1,7 @@
     // ROUTES
     const BACK_URL = "pages/02-puzzles/enigme1.html";
     const SUCCESS_URL = "pages/02-puzzles/qr-code1.html"; // ta redirection actuelle :contentReference[oaicite:1]{index=1}
+    const PUZZLE_ID = "E1";
     const core = window.TheCampCore || window.TheCamp;
 
     const backBtn = document.getElementById("backBtn");
@@ -132,12 +133,26 @@
 
         const onScanSuccess = async (decodedText) => {
           if (!decodedText) return;
-          setResult(`Code détecté : ${decodedText}`, "ok");
-          setStatus("Code validé", "ok");
+
+          if (!window.TheCampQR || typeof window.TheCampQR.validate !== "function") {
+            setStatus("Erreur validation", "err");
+            setResult("Validateur QR indisponible.", "err");
+            return;
+          }
+
+          const validation = await window.TheCampQR.validate(decodedText, { puzzleId: PUZZLE_ID });
+          if (!validation.ok) {
+            setStatus("Code invalide", "err");
+            setResult(validation.message || "QR invalide.", "err");
+            return;
+          }
+
+          setResult("Code detecte et verifie.", "ok");
+          setStatus("Code valide", "ok");
 
           // Stop propre puis redirige
           await stopScan(true);
-          setResult(`Code validé. Redirection…`, "ok");
+          setResult("Code valide. Redirection...", "ok");
           setTimeout(() => window.location.href = SUCCESS_URL, 650);
         };
 

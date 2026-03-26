@@ -84,6 +84,11 @@ thecampmmi/
   scripts/
     core/
       app-core.js                 # API commune (navigation/audio/storage/dom/sw)
+      qr-config.js                # config validation QR signee (issuer/cles publiques)
+      qr-validator.js             # validateur QR signe (format/signature/nonce)
+    tools/
+      generate-qr-keys.js         # genere paire de cles P-256 (JWK)
+      sign-qr-token.js            # signe un payload et renvoie un token TC1
     pages/
       index.js
       00-entry/*.js
@@ -100,6 +105,8 @@ thecampmmi/
   docs/
     architecture-map.md           # carte architecture detaillee
     qa-checklist.md               # checklist manuelle de verification runtime
+    qr-signature.md               # procedure de generation/validation des QR signes
+    qr-codes/                     # QR generes localement (png/json de test)
     refactor/*.md                 # historique des phases
 ```
 
@@ -112,6 +119,7 @@ thecampmmi/
 - Modifier progression: `pages/04-progression/*` + CSS/JS correspondants.
 - Modifier fin/credits: `pages/05-ending/*` + CSS/JS correspondants.
 - Modifier logique commune: `scripts/core/app-core.js`.
+- Modifier validation QR signee: `scripts/core/qr-config.js`, `scripts/core/qr-validator.js`.
 - Modifier theme global: `styles/tokens.css`.
 - Modifier transitions/backdrop communs: `styles/components/transitions.css`, `styles/components/backdrop.css`.
 - Modifier PWA: `manifest.json`, `service-worker.js`.
@@ -132,6 +140,25 @@ thecampmmi/
 ## Verification fonctionnelle
 
 - Utiliser la checklist complete: `docs/qa-checklist.md`.
+
+## QR codes signes (scanner)
+
+- Les pages scanner (`pages/02-puzzles/scanner1.html` a `pages/02-puzzles/scanner4.html`) valident maintenant des tokens signes.
+- Format attendu: `TC1.<payload_b64url>.<signature_b64url>`.
+- Signature: ECDSA P-256 SHA-256 en format `r||s` (`ieee-p1363`, 64 bytes).
+- Le payload doit inclure au minimum: `iss`, `kid`, `p`, `nonce`.
+
+Generation locale rapide:
+
+```bash
+# 1) generer une paire de cles JWK
+node scripts/tools/generate-qr-keys.js > qr-keys.json
+
+# 2) generer un token signe pour une enigme
+node scripts/tools/sign-qr-token.js --private-key private-jwk.json --puzzle E1
+```
+
+Details et exemples complets: `docs/qr-signature.md`.
 
 ## Verification statique rapide
 

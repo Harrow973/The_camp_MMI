@@ -1,2 +1,11 @@
 .DS_Store
 **/.DS_Store
+
+# QR signing secrets and local key material
+private_key.pem
+private-jwk.json
+public_key.pem
+qr-keys.json
+
+# Generated signed payloads (contain live tokens/nonces)
+docs/qr-codes/*.json

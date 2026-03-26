@@ -1,6 +1,7 @@
     // ROUTES ÉNIGME 3 (alignées au style/flow de scanner2)
     const BACK_URL = "pages/02-puzzles/enigme3.html";
     const SUCCESS_URL = "pages/02-puzzles/qr-code3.html";
+    const PUZZLE_ID = "E3";
     const core = window.TheCampCore || window.TheCamp;
 
     // Propagation du personnage (si présent)
@@ -132,11 +133,24 @@
         const onScanSuccess = async (decodedText) => {
           if (!decodedText) return;
 
-          setResult(`Code détecté : ${decodedText}`, "ok");
-          setStatus("Code validé", "ok");
+          if (!window.TheCampQR || typeof window.TheCampQR.validate !== "function") {
+            setStatus("Erreur validation", "err");
+            setResult("Validateur QR indisponible.", "err");
+            return;
+          }
+
+          const validation = await window.TheCampQR.validate(decodedText, { puzzleId: PUZZLE_ID });
+          if (!validation.ok) {
+            setStatus("Code invalide", "err");
+            setResult(validation.message || "QR invalide.", "err");
+            return;
+          }
+
+          setResult("Code detecte et verifie.", "ok");
+          setStatus("Code valide", "ok");
 
           await stopScan(true);
-          setResult(`Code validé. Redirection…`, "ok");
+          setResult("Code valide. Redirection...", "ok");
 
           const target = SUCCESS_URL + (selectedCharacter ? ("?char=" + encodeURIComponent(selectedCharacter)) : "");
           setTimeout(() => window.location.href = target, 650);
