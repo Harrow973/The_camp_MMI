@@ -255,6 +255,20 @@
         ts: now
       };
       await channel.publish("scan_success", payload);
+
+      await new Promise(function resolveAfterRetryDelay(resolve) {
+        global.setTimeout(resolve, 700);
+      });
+
+      payload.ts = Math.floor(Date.now() / 1000);
+      await channel.publish("scan_success", payload);
+
+      await new Promise(function resolveAfterSecondRetryDelay(resolve) {
+        global.setTimeout(resolve, 700);
+      });
+
+      payload.ts = Math.floor(Date.now() / 1000);
+      await channel.publish("scan_success", payload);
       return { ok: true };
     } catch (err) {
       return { ok: false, error: err && err.message ? err.message : "Publication impossible" };
