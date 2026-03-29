@@ -6,9 +6,9 @@
       { name:"???", badge:"Canal inconnu", text:"…Connexion établie. Vous croyez être seuls ?", img:"img/mechant.webp", fx:"intrusion" },
       { name:"???", badge:"Interférence", text:"HAHAHA ! Trop tard, explorateurs du dimanche !", img:"img/mechant3.webp", fx:"glitch" },
       { name:"???", badge:"Sabotage", text:"J’ai débranché un câble… et vous voilà coincés dans le passé pour toujours !", img:"img/mechant.webp", fx:"shake" },
-      { name:"Le Méchant", badge:"Identité", text:"Fallait pas réveiller les secrets de Saint-Claude.", img:"img/mechant.webp", fx:"reveal" },
+      { name:"Le Méchant", badge:"Identité", text:"Il ne fallait pas réveiller les secrets de Saint-Claude.", img:"img/mechant.webp", fx:"reveal" },
       { name:"Le Méchant", badge:"Menace", text:"Bonne chance pour rentrer… si vous y arrivez.", img:"img/mechant.webp", fx:"glitch" },
-      { name:"Le Méchant", badge:"Rupture", text:"Moi ? Je vais m’assurer que personne ne puisse réparer votre petite machine à remonter le temps. BAHAAHAHA !", img:"img/mechant3.webp", fx:"final" }
+      { name:"Le Méchant", badge:"Rupture", text:"Moi ? Je vais m’assurer que personne ne puisse réparer votre petite machine à remonter le temps. BAHAHAHA !", img:"img/mechant3.webp", fx:"final" }
     ];
 
     // ========= ELEMENTS =========

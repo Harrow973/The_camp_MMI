@@ -11,7 +11,7 @@
     const sfxPaper = document.getElementById("sfxPaper");
     const sfxInk = document.getElementById("sfxInk");
 
-    const dialogueLine = "Super, on s’approche du but ! Nous allons maintenant scanner un nouveau code pour continuer.";
+    const dialogueLine = "Super, on approche du but ! Nous allons maintenant scanner un nouveau code pour continuer.";
 
     let isTyping = false;
     let typingTimer = null;

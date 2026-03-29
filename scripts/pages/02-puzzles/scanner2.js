@@ -17,21 +17,161 @@
     const statusChip = document.getElementById("statusChip");
     const frameEl = document.getElementById("frame");
     const scanline = document.getElementById("scanline");
+    const bridgeMobileBadge = document.getElementById("bridgeMobileBadge");
+    const desktopBridgeEl = document.getElementById("desktopBridge");
+    const bridgeQrEl = document.getElementById("bridgeQr");
+    const bridgeCodeEl = document.getElementById("bridgeCode");
+    const bridgeHintEl = document.getElementById("bridgeHint");
+    const bridgeRefreshBtn = document.getElementById("bridgeRefreshBtn");
+
+    const bridgeApi = window.TheCampScanBridge || null;
+    const bridgeParams = bridgeApi && typeof bridgeApi.getBridgeParams === "function"
+      ? bridgeApi.getBridgeParams()
+      : { enabled: false, sid: "", sec: "", p: "" };
+    const isBridgeMobileMode = !!bridgeParams.enabled;
 
     let html5Qr = null;
     let isScanning = false;
     let cameras = [];
     let selectedCameraId = "";
+    let desktopBridgeListener = null;
+
+    if (isBridgeMobileMode) {
+      document.body.classList.add("is-bridge-mobile");
+      if (bridgeMobileBadge) bridgeMobileBadge.hidden = false;
+    }
 
     function setStatus(text, mode){
       statusChip.textContent = text;
       statusChip.classList.remove("ok","err");
       if (mode) statusChip.classList.add(mode);
+      if (isBridgeMobileMode && bridgeMobileBadge && text) {
+        bridgeMobileBadge.textContent = text;
+      }
     }
     function setResult(text, mode){
       resultText.textContent = text;
       resultText.classList.remove("ok","err");
       if (mode) resultText.classList.add(mode);
+      if (isBridgeMobileMode && bridgeMobileBadge && text) {
+        bridgeMobileBadge.textContent = text;
+      }
+    }
+
+    function setBridgeHint(text){
+      if (!bridgeHintEl) return;
+      bridgeHintEl.textContent = text;
+    }
+
+    function getSuccessTarget(){
+      return SUCCESS_URL + (selectedCharacter ? ("?char=" + encodeURIComponent(selectedCharacter)) : "");
+    }
+
+    function redirectToSuccess(){
+      const target = getSuccessTarget();
+      if (desktopBridgeListener && typeof desktopBridgeListener.stop === "function") {
+        desktopBridgeListener.stop();
+        desktopBridgeListener = null;
+      }
+      if (core && core.navigation && typeof core.navigation.transitionTo === "function") {
+        core.navigation.transitionTo(target, { delay: 520 });
+        return;
+      }
+      window.location.href = target;
+    }
+
+    function isDesktopBridgeMode(){
+      if (!bridgeApi || typeof bridgeApi.shouldUseDesktopBridge !== "function") return false;
+      return bridgeApi.shouldUseDesktopBridge();
+    }
+
+    async function initDesktopBridge(){
+      if (!isDesktopBridgeMode()) return false;
+
+      if (desktopBridgeEl) desktopBridgeEl.hidden = false;
+      document.body.classList.add("is-desktop-bridge");
+
+      startBtn.disabled = true;
+      stopBtn.disabled = true;
+      retryBtn.disabled = true;
+      cameraSelect.disabled = true;
+
+      if (!bridgeApi.isConfigured()) {
+        setStatus("Bridge indisponible", "err");
+        setResult(bridgeApi.getConfigError(), "err");
+        setBridgeHint("Configure scripts/core/bridge-config.js pour activer la sync desktop.");
+        return true;
+      }
+
+      const bridgeIssue = typeof bridgeApi.getBridgeLinkIssue === "function"
+        ? bridgeApi.getBridgeLinkIssue()
+        : "";
+      if (bridgeIssue) {
+        setStatus("Lien mobile invalide", "err");
+        setResult(bridgeIssue, "err");
+        setBridgeHint("Mets une URL reseau/HTTPS dans mobileBaseUrl.");
+        return true;
+      }
+
+      if (desktopBridgeListener && typeof desktopBridgeListener.stop === "function") {
+        desktopBridgeListener.stop();
+      }
+
+      const session = bridgeApi.createDesktopSession(PUZZLE_ID);
+      const bridgeUrl = bridgeApi.buildBridgeUrl(session, {
+        char: selectedCharacter || ""
+      });
+      if (!bridgeUrl) {
+        setStatus("Lien mobile invalide", "err");
+        setResult("Impossible de construire l'URL mobile de liaison.", "err");
+        setBridgeHint("Verifie la valeur mobileBaseUrl dans bridge-config.");
+        return true;
+      }
+      const rendered = bridgeApi.renderQr(bridgeQrEl, bridgeUrl);
+
+      if (bridgeCodeEl) bridgeCodeEl.textContent = bridgeUrl;
+      if (!rendered) {
+        setStatus("QR indisponible", "err");
+        setResult("Impossible de generer le QR de liaison.", "err");
+        setBridgeHint("Recharge la page ou verifie la librairie qrcode.");
+        return true;
+      }
+
+      setStatus("En attente mobile", "");
+      setResult("Scanne le QR desktop avec ton telephone.", "");
+      setBridgeHint("Session active. Le desktop se mettra a jour apres validation mobile.");
+
+      try {
+        desktopBridgeListener = await bridgeApi.startDesktopListener({
+          session,
+          onEvent: ({ type, error }) => {
+            if (type === "connected") {
+              setStatus("Desktop connecte", "ok");
+              return;
+            }
+            if (type === "disconnected") {
+              setStatus("Connexion perdue", "err");
+              setBridgeHint("Connexion interrompue. Regenerer le QR.");
+              return;
+            }
+            if (type === "failed") {
+              setStatus("Erreur bridge", "err");
+              setResult(error || "Impossible de se connecter au bridge.", "err");
+            }
+          },
+          onValidated: () => {
+            setStatus("Code valide", "ok");
+            setResult("Validation recue sur mobile. Passage a l'etape suivante...", "ok");
+            setBridgeHint("Succes mobile confirme.");
+            setTimeout(redirectToSuccess, 2600);
+          }
+        });
+      } catch (err) {
+        setStatus("Erreur bridge", "err");
+        setResult(err && err.message ? err.message : "Bridge indisponible.", "err");
+      }
+
+      return true;
     }
 
     function cinematicTransitionTo(url){
@@ -107,6 +247,25 @@
     async function startScan(){
       if (isScanning) return;
 
+      if (document.body.classList.contains("is-desktop-bridge")) {
+        setStatus("Mode desktop", "");
+        setResult("Utilise ton telephone pour scanner via le QR de liaison.", "");
+        return;
+      }
+
+      if (bridgeParams.enabled) {
+        if (!bridgeParams.sid || !bridgeParams.sec) {
+          setStatus("Lien invalide", "err");
+          setResult("Session desktop invalide. Re-scanne le QR desktop.", "err");
+          return;
+        }
+        if (bridgeParams.p && bridgeParams.p !== PUZZLE_ID) {
+          setStatus("Mauvaise enigme", "err");
+          setResult("Ce lien mobile ne correspond pas a cette enigme.", "err");
+          return;
+        }
+      }
+
       if (!isSecureContextOk()){
         setStatus("Contexte non sécurisé", "err");
         setResult("Caméra bloquée: ton site doit être en HTTPS (ou localhost).", "err");
@@ -149,11 +308,32 @@
           setResult("Code detecte et verifie.", "ok");
           setStatus("Code valide", "ok");
 
+          if (bridgeParams.enabled) {
+            const published = await bridgeApi.publishMobileValidation({
+              sid: bridgeParams.sid,
+              sec: bridgeParams.sec,
+              puzzleId: PUZZLE_ID
+            });
+
+            if (!published.ok) {
+              setStatus("Sync impossible", "err");
+              setResult(published.error || "Impossible de notifier le desktop.", "err");
+              return;
+            }
+
+            await stopScan(true);
+            setStatus("Validation envoyee", "ok");
+            setResult("Desktop valide. Tu peux revenir sur l'ordinateur.", "ok");
+            if (bridgeMobileBadge) {
+              bridgeMobileBadge.textContent = "Validation OK. Retourne sur l'ordinateur.";
+            }
+            return;
+          }
+
           await stopScan(true);
           setResult("Code valide. Redirection...", "ok");
 
-          const target = SUCCESS_URL + (selectedCharacter ? ("?char=" + encodeURIComponent(selectedCharacter)) : "");
-          setTimeout(() => window.location.href = target, 650);
+          setTimeout(redirectToSuccess, 650);
         };
 
         const onScanFailure = () => { /* silencieux */ };
@@ -228,6 +408,12 @@
       await startScan();
     });
 
+    if (bridgeRefreshBtn) {
+      bridgeRefreshBtn.addEventListener("click", async () => {
+        await initDesktopBridge();
+      });
+    }
+
     cameraSelect.addEventListener("change", async (e) => {
       selectedCameraId = e.target.value || "";
       setStatus("Caméra sélectionnée", "");
@@ -243,8 +429,18 @@
     });
 
     // Boot
-    setStatus("Prêt", "");
-    setResult("Appuie sur “Démarrer le scan”.", "");
+    if (bridgeParams.enabled) {
+      setStatus("Mode mobile", "");
+      setResult("Scanne le QR physique pour valider le desktop.", "");
+      window.setTimeout(() => {
+        startScan();
+      }, 240);
+    } else {
+      setStatus("Pret", "");
+      setResult("Appuie sur Demarrer le scan.", "");
+    }
+
+    initDesktopBridge();
 
     if (core && core.boot) {
       core.boot({ autoBindNav: false, autoResumeAudio: false });

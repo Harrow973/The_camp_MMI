@@ -1,18 +1,38 @@
 # The Camp - Guide projet
 
-Ce README est la vue d'ensemble de l'arborescence et des zones a modifier.
+Ce README explique comment lancer le projet rapidement, puis ou modifier le code.
 
-## Demarrage local
+## Demarrage ultra simple (2 minutes)
+
+Prerequis minimaux:
+
+- `python3` installe
+- un navigateur moderne (Chrome, Edge, Safari)
 
 Depuis la racine du projet:
 
 ```bash
-python3 -m http.server 5500 ou Go live
+python3 -m http.server 5500
 ```
 
 Puis ouvrir:
 
 - `http://localhost:5500`
+
+Important:
+
+- Aucun `npm install` n'est necessaire.
+- Aucune cle Ably n'est necessaire (bridge desactive).
+- Le scanner QR marche en local sur desktop avec webcam.
+- Sur smartphone, la camera demande une URL `https` (ou `localhost`).
+
+Pour une version encore plus courte, voir `docs/quickstart.md`.
+
+## QR de demo prets a l'emploi
+
+- Les QR de demo sont deja fournis dans `docs/qr-codes/e1.png` a `docs/qr-codes/e4.png`.
+- Tu peux imprimer directement `docs/qr-codes/print-a4.html`.
+- Les QR de demo peuvent etre rescannes sans limite sur le meme appareil.
 
 ## Arborescence (source of truth)
 
@@ -84,6 +104,8 @@ thecampmmi/
   scripts/
     core/
       app-core.js                 # API commune (navigation/audio/storage/dom/sw)
+      bridge-config.js            # (optionnel) ancien bridge desktop <-> mobile
+      scan-bridge.js              # (optionnel) ancien bridge de sync mobile
       qr-config.js                # config validation QR signee (issuer/cles publiques)
       qr-validator.js             # validateur QR signe (format/signature/nonce)
     tools/
@@ -105,8 +127,9 @@ thecampmmi/
   docs/
     architecture-map.md           # carte architecture detaillee
     qa-checklist.md               # checklist manuelle de verification runtime
-    qr-signature.md               # procedure de generation/validation des QR signes
-    qr-codes/                     # QR generes localement (png/json de test)
+    qr-signature.md               # procedure avancee de generation/validation QR
+    quickstart.md                 # demarrage en 2 minutes
+    qr-codes/                     # QR de demo pre-generes (png + planche A4)
     refactor/*.md                 # historique des phases
 ```
 
@@ -120,6 +143,7 @@ thecampmmi/
 - Modifier fin/credits: `pages/05-ending/*` + CSS/JS correspondants.
 - Modifier logique commune: `scripts/core/app-core.js`.
 - Modifier validation QR signee: `scripts/core/qr-config.js`, `scripts/core/qr-validator.js`.
+- Sync desktop/mobile (bridge Ably) desactivee par defaut pour simplifier l'installation.
 - Modifier theme global: `styles/tokens.css`.
 - Modifier transitions/backdrop communs: `styles/components/transitions.css`, `styles/components/backdrop.css`.
 - Modifier PWA: `manifest.json`, `service-worker.js`.
@@ -148,7 +172,7 @@ thecampmmi/
 - Signature: ECDSA P-256 SHA-256 en format `r||s` (`ieee-p1363`, 64 bytes).
 - Le payload doit inclure au minimum: `iss`, `kid`, `p`, `nonce`.
 
-Generation locale rapide:
+Generation locale (avance):
 
 ```bash
 # 1) generer une paire de cles JWK
@@ -159,6 +183,13 @@ node scripts/tools/sign-qr-token.js --private-key private-jwk.json --puzzle E1
 ```
 
 Details et exemples complets: `docs/qr-signature.md`.
+
+## Scanner simplifie (sans Ably)
+
+- Le scanner fonctionne maintenant sans bridge temps reel desktop/mobile.
+- Aucune cle Ably ni tunnel ngrok n'est necessaire pour lancer le projet.
+- Le scan se fait directement sur l'appareil qui ouvre `pages/02-puzzles/scanner*.html`.
+- Le mode demo autorise les rescans repetes des QR de `docs/qr-codes/`.
 
 ## Verification statique rapide
 

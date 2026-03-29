@@ -5,6 +5,7 @@
     tokenPrefix: "TC1",
     issuer: "thecamp",
     maxClockSkewSec: 60,
+    enforceNonceReplayProtection: true,
     usedNonceStorageKey: "tc_qr_used_nonces_v1",
     usedNonceMaxEntries: 500,
     keys: {}
@@ -18,6 +19,7 @@
       tokenPrefix: base.tokenPrefix,
       issuer: base.issuer,
       maxClockSkewSec: base.maxClockSkewSec,
+      enforceNonceReplayProtection: base.enforceNonceReplayProtection,
       usedNonceStorageKey: base.usedNonceStorageKey,
       usedNonceMaxEntries: base.usedNonceMaxEntries,
       keys: {}
@@ -41,6 +43,7 @@
     if (overrides && typeof overrides.tokenPrefix === "string") merged.tokenPrefix = overrides.tokenPrefix;
     if (overrides && typeof overrides.issuer === "string") merged.issuer = overrides.issuer;
     if (overrides && typeof overrides.maxClockSkewSec === "number") merged.maxClockSkewSec = overrides.maxClockSkewSec;
+    if (overrides && typeof overrides.enforceNonceReplayProtection === "boolean") merged.enforceNonceReplayProtection = overrides.enforceNonceReplayProtection;
     if (overrides && typeof overrides.usedNonceStorageKey === "string") merged.usedNonceStorageKey = overrides.usedNonceStorageKey;
     if (overrides && typeof overrides.usedNonceMaxEntries === "number") merged.usedNonceMaxEntries = overrides.usedNonceMaxEntries;
 
@@ -256,7 +259,7 @@
         return toResult(false, "INVALID_PAYLOAD", getErrorMessage("INVALID_PAYLOAD"));
       }
 
-      if (!consumeNonce(payload.nonce)) {
+      if (config.enforceNonceReplayProtection && !consumeNonce(payload.nonce)) {
         return toResult(false, "REPLAYED", getErrorMessage("REPLAYED"));
       }
 

@@ -7,6 +7,7 @@
     tokenPrefix: "TC1",
     issuer: "thecamp",
     maxClockSkewSec: 60,
+    enforceNonceReplayProtection: false,
     usedNonceStorageKey: "tc_qr_used_nonces_v1",
     usedNonceMaxEntries: 500,
     keys: {

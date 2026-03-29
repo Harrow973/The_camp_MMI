@@ -1,6 +1,10 @@
 # QR signature setup
 
-Scanner pages now require signed QR tokens.
+Scanner pages require signed QR tokens.
+
+This document is for advanced usage (custom key rotation, custom tokens).
+
+For the simplest run, use the pre-generated demo QR images in `docs/qr-codes/`.
 
 ## Token format
 
@@ -16,7 +20,7 @@ Supported payload fields:
 - `iss` (required): issuer, must be `thecamp`
 - `kid` (required): key id used to pick public key
 - `p` (required): puzzle id (`E1`, `E2`, `E3`, `E4`)
-- `nonce` (required): unique value for anti-replay on the same device
+- `nonce` (required): unique value carried in payload (anti-replay optional by config)
 - `nbf` (optional): not-before unix timestamp (seconds)
 - `exp` (optional): expiration unix timestamp (seconds)
 
@@ -65,3 +69,8 @@ The script prints JSON with `token`. Use that value as the QR content.
 
 - Validator: `scripts/core/qr-validator.js`
 - Scanner integration: `scripts/pages/02-puzzles/scanner1.js` to `scripts/pages/02-puzzles/scanner4.js`
+
+## Replay protection mode
+
+- Demo mode (default in this repository): `enforceNonceReplayProtection: false` in `scripts/core/qr-config.js`
+- Strict mode (recommended for production): set `enforceNonceReplayProtection: true`

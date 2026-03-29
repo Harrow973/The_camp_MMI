@@ -11,8 +11,8 @@
     const bgm = document.getElementById("bgm");
 
     const lines = [
-      { badge: "Attention", text: "C’est une caserne militaire ici ! Assez bavarder !", image: "img/pmilitairetalk.webp", shake: true },
-      { badge: "Ordre", text: "Habillez-vous, soldats, et rejoignez-moi là-bas.", image: "img/pmilitaire sourire.webp", shake: false }
+      { badge: "Attention", text: "C’est une caserne militaire ici ! Assez bavardé !", image: "img/pmilitairetalk.webp", shake: true },
+      { badge: "Ordre", text: "Soldats, habillez-vous et rejoignez-moi là-bas.", image: "img/pmilitaire sourire.webp", shake: false }
     ];
 
     let idx = 0;

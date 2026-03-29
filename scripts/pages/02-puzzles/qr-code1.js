@@ -17,7 +17,7 @@
       { speaker: "Professeur Tony", badge: "Félicitations", text: "Excellent travail ! Vous avez trouvé le premier artefact-balise !", image: "img/profsourir.webp", shake: false, stamp: false },
       { speaker: "Professeur Tony", badge: "Objectif",       text: "Il nous en reste encore 3 à trouver. Ne perdons pas de temps !",          image: "img/profneutre.webp", shake: false, stamp: false },
       { speaker: "Professeur Tony", badge: "Scan",           text: "Je détecte la prochaine signature énergétique... Préparez-vous !",        image: "img/proftalk.webp",   shake: false, stamp: true  },
-      { speaker: "Sergent-Chef",    badge: "Alerte",         text: "On est attaqué, venez défendre la base !",                               image: "img/pmilitaire colere.webp", shake: true, stamp: false, final: true }
+      { speaker: "Sergent-Chef",    badge: "Alerte",         text: "On est attaqués, venez défendre la base !",                              image: "img/pmilitaire colere.webp", shake: true, stamp: false, final: true }
     ];
 
     let idx = 0;

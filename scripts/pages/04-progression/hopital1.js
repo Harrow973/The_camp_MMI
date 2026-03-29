@@ -14,7 +14,7 @@
     const lines = [
       {
         badge: "Triage",
-        text: "Qu’est-ce que vous faites ici ?",
+        text: "Que faites-vous ici ?",
         image: "img/phopital colere.webp",
         shake: true
       },
