@@ -327,6 +327,7 @@
             if (bridgeMobileBadge) {
               bridgeMobileBadge.textContent = "Validation OK. Retourne sur l'ordinateur.";
             }
+            setTimeout(redirectToSuccess, 1800);
             return;
           }
 
